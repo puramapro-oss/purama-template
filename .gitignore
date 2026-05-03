@@ -1,0 +1,86 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+/playwright-report
+/test-results
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+*.p12
+*.key
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+!.env.example
+!.env.local.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# PURAMA briefs — never commit (contain live secrets, internal IP)
+# Reference: ERRORS.md YATRA 2026-04-25 GitHub push protection blocks Stripe live keys
+CLAUDE-2.md
+*-BRIEF.md
+*-CLAUDE.md
+KARMA-*.md
+KARMA_*.md
+GLOBAL-UPDATE-BRIEF.md
+PURAMA_MASTER_UPGRADE.md
+STRIPE_CONNECT_KARMA_V4.md
+HANDOFF_*.md
+LEARNINGS.md
+ERRORS.md
+PATTERNS.md
+.planning/
+
+# Capacitor build artifacts
+/ios/App/build
+/android/app/build
+/android/.gradle
+
+# Supabase migrations not yet applied (track in branch but never auto-ran)
+schema.sql
+schema-*.sql
+seeds/*.json
+
+# OpenTimestamps proofs (binary, large) — store in Supabase Storage instead
+*.ots
+
+# Marketing screenshots — généré par Playwright, peut être lourd
+/docs/marketing/screenshots/output/
+
+# IDE
+.idea
+.vscode/settings.json
+
+# OS
+Thumbs.db
