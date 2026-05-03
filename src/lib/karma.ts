@@ -17,8 +17,6 @@
  *   - pool_transactions(pool_type, amount_cents, direction, reason, ref_payment_id)
  */
 
-import type { SupabaseClient } from "@supabase/supabase-js";
-
 export type PoolType = "users" | "asso" | "sasu";
 
 export interface KarmaSplit {
@@ -46,7 +44,17 @@ export function computeKarmaSplit(amountCents: number): KarmaSplit {
   return { totalCents: amountCents, usersCents, assoCents, sasuCents };
 }
 
-export type SupabaseLike = SupabaseClient<unknown, string, never>;
+/**
+ * Type permissif accepté par les helpers KARMA :
+ *   - SupabaseClient (retour de getSupabaseServer / getSupabaseService)
+ *   - PostgrestClient (retour de getSupabaseServiceClient via .schema())
+ *
+ * Le template ne ship pas de Database généré — chaque app peut générer le sien
+ * via `supabase gen types typescript` puis remplacer ce type par le vrai
+ * `SupabaseClient<Database>` pour récupérer le typage strict des tables.
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type SupabaseLike = any;
 
 /**
  * Applique le split d'un revenu Stripe sur les 3 pools.
