@@ -102,8 +102,8 @@ cat > BRIEF.md <<EOF
 - [ ] Feature 3 —
 
 ## Pricing
-- **Standard** : $9.99/mois — (perks)
-- **Premium** : $19.99/mois — (perks)
+- **Standard** : 9,99 €/mois — (perks)
+- **Premium** : 19,99 €/mois — (perks)
 - (Le template part sur 2 plans Standard/Premium. Override en éditant src/lib/stripe.ts.)
 
 ## IA persona
