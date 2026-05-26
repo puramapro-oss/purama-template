@@ -1,0 +1,26 @@
+{
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://js.stripe.com https://eu.i.posthog.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://auth.purama.dev https://api.anthropic.com https://api.stripe.com https://eu.i.posthog.com; frame-src https://js.stripe.com https://hooks.stripe.com;"
+        },
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" }
+      ]
+    }
+  ],
+  "rewrites": [
+    { "source": "/go/:slug", "destination": "/api/go/:slug" }
+  ],
+  "crons": [
+    { "path": "/api/cron/stats", "schedule": "0 6 * * *" },
+    { "path": "/api/cron/health", "schedule": "*/15 * * * *" },
+    { "path": "/api/cron/churn", "schedule": "0 9 * * 1" }
+  ]
+}

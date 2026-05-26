@@ -1,0 +1,60 @@
+# Cursor Rules — {{APP_NAME}}
+
+## Context
+Ce projet suit **CLAUDE.md V13 CORE** (`~/purama/CLAUDE.md`).
+Toujours lire CLAUDE.md + ERRORS.md + PATTERNS.md avant modifier.
+
+## Principes
+1. **Plan → montrer → "ok" → exécuter** (feature par feature)
+2. **0 placeholder** (TODO/Lorem/console.log/any)
+3. **Test avant avancer** (tsc, build, tests)
+4. **1 erreur = fix immédiat** (puis ligne dans ERRORS.md)
+5. **Progressive disclosure** → charger SKILLS uniquement si pertinents
+
+## Stack
+- Next.js 15 (App Router, React 19, RSC)
+- Supabase (auth.purama.dev, schema {{SLUG}})
+- Tailwind CSS (Design Tokens God Mode V3)
+- TypeScript strict
+- Claude Sonnet 4.6 (Anthropic SDK)
+- Stripe
+- Vercel
+
+## Anti-patterns (JAMAIS faire)
+- Faux contenu (Lorem, fake testimonials, fake numbers)
+- Secrets côté client (seul `NEXT_PUBLIC_` exposable)
+- `any` TypeScript
+- catch vides
+- useEffect sans cleanup
+- fetch sans error+loading
+- Fichier >300 lignes
+- Composant >5 props required
+
+## Design
+- Glass morphism (`glass`, `glass-card`)
+- Dark mode par défaut
+- Responsive 375px+
+- Animations Framer Motion
+- Icons Lucide React (0 images)
+- Primary: `#7C3AED` (override per app dans globals.css)
+- Secondary: `#06B6D4`
+- Gold super-admin: `#FFD700`
+
+## Workflow
+1. Lire task_plan.md
+2. Implémenter 1 feature
+3. Test (tsc, build, Playwright)
+4. Commit
+5. Deploy
+6. Feature suivante
+
+## Testing
+- `npm run typecheck` → 0 erreurs
+- `npm run build` → 0 erreurs
+- Playwright → 100% pass
+- Lighthouse → >90
+
+## Références
+- CLAUDE.md: `/Users/matissdornier/purama/CLAUDE.md`
+- SKILLS: `/Users/matissdornier/purama/SKILLS/*.md`
+- Template: `/Users/matissdornier/purama/purama-template/`
