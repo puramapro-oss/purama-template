@@ -41,10 +41,13 @@ export async function POST(req: NextRequest) {
       mode: 'subscription',
       payment_method_types: ['card'],
       line_items: [{ price: selectedPlan.priceId, quantity: 1 }],
-      subscription_data: { trial_period_days: 7 },
+      subscription_data: {
+        trial_period_days: 7,
+        metadata: { app_slug: '{{SLUG}}' }
+      },
       success_url: `${origin}/dashboard?checkout=success`,
       cancel_url: `${origin}/settings/abonnement?checkout=cancel`,
-      metadata: { user_id: user.id, slug: '{{SLUG}}' },
+      metadata: { user_id: user.id, slug: '{{SLUG}}', app_slug: '{{SLUG}}' },
     })
 
     return NextResponse.json({ url: session.url })

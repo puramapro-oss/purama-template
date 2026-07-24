@@ -54,6 +54,7 @@ export async function createCheckoutSession({
       userId,
       planId,
       referralCode: referralCode ?? '',
+      app_slug: '{{SLUG}}',
     },
     subscription_data: {
       trial_period_days: 7,
@@ -61,6 +62,7 @@ export async function createCheckoutSession({
         userId,
         planId,
         referralCode: referralCode ?? '',
+        app_slug: '{{SLUG}}',
       },
     },
     success_url: successUrl,

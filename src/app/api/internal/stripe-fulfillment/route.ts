@@ -5,9 +5,16 @@ import { splitRevenue, calcReferralCommission } from '@/lib/karma'
 import type Stripe from 'stripe'
 
 export async function POST(req: NextRequest) {
-  const body = await req.text()
-  const sig = req.headers.get('stripe-signature')!
+  // Verify internal secret from karma dispatcher
+  const internalSecret = req.headers.get('x-internal-secret')
+  if (internalSecret !== process.env.INTERNAL_WEBHOOK_SECRET) {
+    return NextResponse.json({ error: 'Non autorisé' }, { status: 401 })
+  }
 
+  const body = await req.text()
+  const sig = req.headers.get('x-stripe-signature')!
+
+  // Defense in depth: still verify Stripe signature even though karma already did
   let event: Stripe.Event
   try {
     event = stripe.webhooks.constructEvent(body, sig, process.env.STRIPE_WEBHOOK_SECRET!)
