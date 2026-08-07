@@ -53,7 +53,7 @@ export default async function AdminUsersPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-white/[0.06]">
-              {profiles?.map((profile: any) => (
+              {profiles?.map((profile: Profile) => (
                 <tr key={profile.id}>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-[#F5F5FA]">
                     {profile.email}

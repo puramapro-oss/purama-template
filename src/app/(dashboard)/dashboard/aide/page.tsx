@@ -6,7 +6,7 @@ import Link from 'next/link'
 const FAQ = [
   {
     question: 'Comment fonctionne le parrainage ?',
-    answer: "Invitez vos amis avec votre lien de parrainage. Dès qu'ils souscrivent, vous recevez 50% de leur premier paiement sur votre wallet.",
+    answer: "Invitez vos amis avec votre lien de parrainage. Dès qu&apos;ils souscrivent, vous recevez 50% de leur premier paiement sur votre wallet.",
   },
   {
     question: 'Quand puis-je retirer mes gains ?',
@@ -14,11 +14,11 @@ const FAQ = [
   },
   {
     question: 'Comment annuler mon abonnement ?',
-    answer: "Rendez-vous dans Paramètres > Abonnement et cliquez sur \"Annuler l'abonnement\". Vous conservez l'accès jusqu'à la fin de la période payée.",
+    answer: "Rendez-vous dans Paramètres > Abonnement et cliquez sur &quot;Annuler l&apos;abonnement&quot;. Vous conservez l&apos;accès jusqu&apos;à la fin de la période payée.",
   },
   {
     question: 'Puis-je modifier mes informations de paiement ?',
-    answer: 'Oui, allez dans Paramètres > Abonnement et cliquez sur "Gérer le paiement" pour mettre à jour votre carte bancaire.',
+    answer: 'Oui, allez dans Paramètres > Abonnement et cliquez sur &quot;Gérer le paiement&quot; pour mettre à jour votre carte bancaire.',
   },
   {
     question: 'Que faire si le paiement échoue ?',
@@ -26,7 +26,7 @@ const FAQ = [
   },
   {
     question: 'Comment contacter le support ?',
-    answer: 'Cliquez sur le bouton "Discuter avec le support" en bas de cette page ou envoyez-nous un email à hello@{{SLUG}}.purama.dev',
+    answer: 'Cliquez sur le bouton &quot;Discuter avec le support&quot; en bas de cette page ou envoyez-nous un email à hello@{{SLUG}}.purama.dev',
   },
 ]
 
@@ -41,7 +41,7 @@ export default function AidePage() {
     <div className="min-h-screen p-6">
       <div className="max-w-2xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-2xl font-bold mb-2">Centre d'aide</h1>
+          <h1 className="text-2xl font-bold mb-2">Centre d&apos;aide</h1>
           <p className="text-white/60">Trouvez des réponses à vos questions</p>
         </div>
         <div className="space-y-3">
@@ -67,7 +67,7 @@ export default function AidePage() {
         </div>
         <div className="mt-8 p-6 bg-gradient-to-br from-[#7C3AED]/10 to-[#06B6D4]/10 border border-white/[0.06] rounded-2xl text-center">
           <MessageCircle className="w-8 h-8 mx-auto mb-3 text-[#7C3AED]" />
-          <h2 className="font-bold mb-2">Besoin d'aide supplémentaire ?</h2>
+          <h2 className="font-bold mb-2">Besoin d&apos;aide supplémentaire ?</h2>
           <p className="text-sm text-white/60 mb-4">Notre équipe est là pour vous aider</p>
           <Link
             href="/dashboard/chat"

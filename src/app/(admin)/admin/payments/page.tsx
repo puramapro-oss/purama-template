@@ -50,7 +50,7 @@ export default async function AdminPaymentsPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-white/[0.06]">
-              {entries?.map((entry: any) => (
+              {entries?.map((entry) => (
                 <tr key={entry.id}>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-mono text-[#F5F5FA]/60">
                     {entry.user_id?.substring(0, 8)}...

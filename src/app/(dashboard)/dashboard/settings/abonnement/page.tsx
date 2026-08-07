@@ -47,7 +47,7 @@ export default function AbonnementPage() {
       })
       const data = await res.json()
       if (data.url) {
-        window.location.href = data.url
+        window.location.assign(data.url)
       }
     } catch {
       setSubscribing(null)
@@ -64,7 +64,7 @@ export default function AbonnementPage() {
       })
       const data = await res.json()
       if (data.url) {
-        window.location.href = data.url
+        window.location.assign(data.url)
       }
     } catch {
       setSubscribing(null)
@@ -161,7 +161,7 @@ export default function AbonnementPage() {
                     >
                       {subscribing === 'portal'
                         ? 'Chargement...'
-                        : 'Gérer l\'abonnement'}
+                        : 'Gérer l&apos;abonnement'}
                     </button>
                   </div>
                 ) : (
@@ -173,7 +173,7 @@ export default function AbonnementPage() {
                     >
                       {subscribing === planData.key
                         ? 'Chargement...'
-                        : 'S\'abonner'}
+                        : 'S&apos;abonner'}
                     </button>
                   </div>
                 )}

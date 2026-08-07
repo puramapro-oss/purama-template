@@ -81,7 +81,7 @@ export default function ProfilePage() {
               readOnly
               className="w-full h-11 px-4 rounded-xl bg-white/[0.03] border border-white/[0.06] text-white/40 cursor-not-allowed"
             />
-            <p className="text-xs text-white/40 mt-1">L'email ne peut pas être modifié</p>
+            <p className="text-xs text-white/40 mt-1">L&apos;email ne peut pas être modifié</p>
           </div>
           <div>
             <label className="block text-sm text-white/60 mb-2">Nom complet</label>

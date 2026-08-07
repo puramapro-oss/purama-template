@@ -43,7 +43,7 @@ const achievements = [
     id: 5,
     icon: CheckCircle2,
     title: 'Pro',
-    description: 'S\'abonner au plan Pro',
+    description: 'S&apos;abonner au plan Pro',
     unlocked: false,
   },
   {
@@ -61,7 +61,7 @@ export default function AchievementsPage() {
       <div>
         <h1 className="text-2xl font-bold text-[#F5F5FA]">Succès</h1>
         <p className="mt-1 text-[#F5F5FA]/60">
-          Débloquez des récompenses en utilisant l'application
+          Débloquez des récompenses en utilisant l&apos;application
         </p>
       </div>
 

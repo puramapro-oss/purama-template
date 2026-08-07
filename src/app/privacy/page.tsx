@@ -28,9 +28,9 @@ export default function PrivacyPage() {
             <p>Nous collectons les données suivantes :</p>
             <ul className="list-disc list-inside space-y-1 text-[rgba(245,245,250,0.7)] ml-4">
               <li>Identité : nom, prénom, adresse email</li>
-              <li>Données de connexion : logs d'accès, adresse IP</li>
+              <li>Données de connexion : logs d&apos;accès, adresse IP</li>
               <li>Données de paiement : gérées exclusivement par Stripe (nous ne stockons aucune donnée bancaire)</li>
-              <li>Données d'utilisation : interactions avec le service, historique des sessions</li>
+              <li>Données d&apos;utilisation : interactions avec le service, historique des sessions</li>
             </ul>
           </section>
 
@@ -54,7 +54,7 @@ export default function PrivacyPage() {
           <section className="space-y-3">
             <h2 className="text-lg font-semibold text-[var(--foreground)]">5. Vos droits (RGPD)</h2>
             <p>
-              Vous disposez des droits d'accès, rectification, effacement, limitation, portabilité et opposition.
+              Vous disposez des droits d&apos;accès, rectification, effacement, limitation, portabilité et opposition.
               Pour les exercer : matiss.frasne@gmail.com. Vous pouvez également contacter la CNIL (cnil.fr).
             </p>
           </section>
@@ -62,7 +62,7 @@ export default function PrivacyPage() {
           <section className="space-y-3">
             <h2 className="text-lg font-semibold text-[var(--foreground)]">6. Cookies</h2>
             <p>
-              Nous utilisons uniquement des cookies essentiels au fonctionnement du service (session d'authentification).
+              Nous utilisons uniquement des cookies essentiels au fonctionnement du service (session d&apos;authentification).
               Aucun cookie publicitaire ou de tracking tiers.
             </p>
           </section>
@@ -73,7 +73,7 @@ export default function PrivacyPage() {
               <li>Supabase Inc. — hébergement des données (UE)</li>
               <li>Vercel Inc. — hébergement applicatif</li>
               <li>Stripe Inc. — traitement des paiements</li>
-              <li>Resend Inc. — envoi d'emails transactionnels</li>
+              <li>Resend Inc. — envoi d&apos;emails transactionnels</li>
             </ul>
           </section>
 

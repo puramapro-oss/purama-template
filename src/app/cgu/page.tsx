@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Conditions Générales d\'Utilisation',
+  title: 'Conditions Générales d&apos;Utilisation',
   description: 'CGU de {{APP_NAME}}',
 }
 
@@ -11,7 +11,7 @@ export default function CguPage() {
       <div className="max-w-4xl mx-auto space-y-8">
         <div>
           <h1 className="text-3xl font-bold text-[#F5F5FA]">
-            Conditions Générales d'Utilisation
+            Conditions Générales d&apos;Utilisation
           </h1>
           <p className="mt-2 text-[#F5F5FA]/60">
             Dernière mise à jour : {new Date().toLocaleDateString('fr-FR')}
@@ -24,8 +24,8 @@ export default function CguPage() {
               Article 1 — Objet
             </h2>
             <p className="text-[#F5F5FA]/80">
-              Les présentes conditions générales d'utilisation (CGU) définissent
-              les règles d'accès et d'utilisation du service {'{{APP_NAME}}'}{' '}
+              Les présentes conditions générales d&apos;utilisation (CGU) définissent
+              les règles d&apos;accès et d&apos;utilisation du service {'{{APP_NAME}}'}{' '}
               proposé par SASU PURAMA.
             </p>
           </div>
@@ -35,8 +35,8 @@ export default function CguPage() {
               Article 2 — Acceptation
             </h2>
             <p className="text-[#F5F5FA]/80">
-              L'utilisation du service implique l'acceptation pleine et entière
-              des présentes CGU. Si vous n'acceptez pas ces conditions, veuillez
+              L&apos;utilisation du service implique l&apos;acceptation pleine et entière
+              des présentes CGU. Si vous n&apos;acceptez pas ces conditions, veuillez
               ne pas utiliser le service.
             </p>
           </div>
@@ -46,8 +46,8 @@ export default function CguPage() {
               Article 3 — Création de compte
             </h2>
             <p className="text-[#F5F5FA]/80">
-              L'accès à certaines fonctionnalités du service nécessite la
-              création d'un compte utilisateur. Vous êtes responsable de la
+              L&apos;accès à certaines fonctionnalités du service nécessite la
+              création d&apos;un compte utilisateur. Vous êtes responsable de la
               confidentialité de vos identifiants de connexion et de toutes les
               activités effectuées depuis votre compte.
             </p>
@@ -58,7 +58,7 @@ export default function CguPage() {
               Article 4 — Description du service
             </h2>
             <p className="text-[#F5F5FA]/80">
-              {'{{APP_NAME}}'} est un service d'intelligence artificielle qui
+              {'{{APP_NAME}}'} est un service d&apos;intelligence artificielle qui
               fournit des recommandations et des réponses personnalisées. Le
               service est accessible via une interface web et mobile.
             </p>
@@ -70,8 +70,8 @@ export default function CguPage() {
             </h2>
             <p className="text-[#F5F5FA]/80">
               Un essai gratuit de 7 jours est proposé aux nouveaux utilisateurs.
-              Aucun paiement n'est requis pendant la période d'essai. Si vous ne
-              résiliez pas avant la fin de l'essai, votre abonnement sera
+              Aucun paiement n&apos;est requis pendant la période d&apos;essai. Si vous ne
+              résiliez pas avant la fin de l&apos;essai, votre abonnement sera
               automatiquement activé.
             </p>
           </div>
@@ -82,8 +82,8 @@ export default function CguPage() {
             </h2>
             <p className="text-[#F5F5FA]/80">
               Les paiements sont traités de manière sécurisée via Stripe.
-              L'abonnement se renouvelle automatiquement à la fin de chaque
-              période de facturation (mensuelle ou annuelle) jusqu'à résiliation.
+              L&apos;abonnement se renouvelle automatiquement à la fin de chaque
+              période de facturation (mensuelle ou annuelle) jusqu&apos;à résiliation.
             </p>
           </div>
 
@@ -103,10 +103,10 @@ export default function CguPage() {
               Article 8 — Droit de rétractation
             </h2>
             <p className="text-[#F5F5FA]/80">
-              Conformément à l'article L221-28 3° du Code de la consommation,
-              vous reconnaissez et acceptez que l'utilisation du service pendant
+              Conformément à l&apos;article L221-28 3° du Code de la consommation,
+              vous reconnaissez et acceptez que l&apos;utilisation du service pendant
               le délai de rétractation constitue une renonciation tacite à votre
-              droit de rétractation. Aucune case à cocher supplémentaire n'est
+              droit de rétractation. Aucune case à cocher supplémentaire n&apos;est
               requise.
             </p>
           </div>
@@ -116,10 +116,10 @@ export default function CguPage() {
               Article 9 — Responsabilité
             </h2>
             <p className="text-[#F5F5FA]/80">
-              Le service est fourni "en l'état". L'intelligence artificielle peut
-              commettre des erreurs. SASU PURAMA ne garantit pas l'exactitude,
-              l'exhaustivité ou la pertinence des réponses fournies. L'utilisateur
-              reste seul responsable de l'utilisation qu'il fait des informations
+              Le service est fourni &quot;en l&apos;état&quot;. L&apos;intelligence artificielle peut
+              commettre des erreurs. SASU PURAMA ne garantit pas l&apos;exactitude,
+              l&apos;exhaustivité ou la pertinence des réponses fournies. L&apos;utilisateur
+              reste seul responsable de l&apos;utilisation qu&apos;il fait des informations
               fournies par le service.
             </p>
           </div>
@@ -131,7 +131,7 @@ export default function CguPage() {
             <p className="text-[#F5F5FA]/80">
               Tous les éléments du service (textes, images, logos, code source)
               sont la propriété exclusive de SASU PURAMA et sont protégés par le
-              droit d'auteur et les lois sur la propriété intellectuelle.
+              droit d&apos;auteur et les lois sur la propriété intellectuelle.
             </p>
           </div>
 
@@ -165,7 +165,7 @@ export default function CguPage() {
             </h2>
             <p className="text-[#F5F5FA]/80">
               Pour toute question concernant ces CGU, vous pouvez nous contacter
-              à l'adresse :{' '}
+              à l&apos;adresse :{' '}
               <a
                 href="mailto:matiss.frasne@gmail.com"
                 className="text-[#7C3AED] hover:underline"

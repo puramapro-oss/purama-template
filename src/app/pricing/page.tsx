@@ -11,7 +11,7 @@ const PLANS = [
     name: 'Mensuel',
     price: '9,99€',
     period: '/mois',
-    desc: '7 jours d\'essai gratuit',
+    desc: '7 jours d&apos;essai gratuit',
     priceId: 'MONTHLY',
     highlight: false,
     features: ['IA illimitée', 'Wallet & cashback', 'Parrainage', 'Support email'],
@@ -38,7 +38,7 @@ export default function PricingPage() {
               sans surprise
             </span>
           </h1>
-          <p className="text-[rgba(245,245,250,0.6)]">7 jours d'essai gratuit — aucune carte bancaire requise</p>
+          <p className="text-[rgba(245,245,250,0.6)]">7 jours d&apos;essai gratuit — aucune carte bancaire requise</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -81,7 +81,7 @@ export default function PricingPage() {
                 }`}
               >
                 <Zap className="w-4 h-4" />
-                Commencer l'essai gratuit
+                Commencer l&apos;essai gratuit
               </Link>
             </div>
           ))}

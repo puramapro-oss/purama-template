@@ -82,12 +82,12 @@ export default function MentionsLegalesPage() {
               Propriété intellectuelle
             </h2>
             <p className="text-[#F5F5FA]/80">
-              L'ensemble de ce site relève de la législation française et
-              internationale sur le droit d'auteur et la propriété
+              L&apos;ensemble de ce site relève de la législation française et
+              internationale sur le droit d&apos;auteur et la propriété
               intellectuelle. Tous les droits de reproduction sont réservés, y
               compris pour les documents téléchargeables et les représentations
               iconographiques et photographiques. Toute reproduction totale ou
-              partielle du site est interdite sans l'autorisation expresse de
+              partielle du site est interdite sans l&apos;autorisation expresse de
               SASU PURAMA.
             </p>
           </div>
@@ -96,7 +96,7 @@ export default function MentionsLegalesPage() {
             <h2 className="text-xl font-semibold text-[#F5F5FA]">Contact</h2>
             <p className="text-[#F5F5FA]/80">
               Pour toute question concernant ces mentions légales, vous pouvez
-              nous contacter à l'adresse :{' '}
+              nous contacter à l&apos;adresse :{' '}
               <a
                 href="mailto:matiss.frasne@gmail.com"
                 className="text-[#7C3AED] hover:underline"

@@ -67,8 +67,8 @@ export default function CgvPage() {
               Article 3 — TVA
             </h2>
             <p className="text-[#F5F5FA]/80">
-              La TVA n'est pas applicable conformément à l'article 293B du Code
-              général des impôts (franchise de TVA pour un chiffre d'affaires
+              La TVA n&apos;est pas applicable conformément à l&apos;article 293B du Code
+              général des impôts (franchise de TVA pour un chiffre d&apos;affaires
               annuel inférieur à 85 800€ pour les prestations de services). Cette
               mention figure sur toutes nos factures.
             </p>
@@ -92,7 +92,7 @@ export default function CgvPage() {
             <p className="text-[#F5F5FA]/80">
               Un essai gratuit de 7 jours est proposé aux nouveaux utilisateurs.
               Si vous résiliez votre abonnement avant la fin de la période
-              d'essai, aucun montant ne sera facturé.
+              d&apos;essai, aucun montant ne sera facturé.
             </p>
           </div>
 
@@ -101,10 +101,10 @@ export default function CgvPage() {
               Article 6 — Droit de rétractation
             </h2>
             <p className="text-[#F5F5FA]/80">
-              Conformément à l'article L221-28 3° du Code de la consommation, le
+              Conformément à l&apos;article L221-28 3° du Code de la consommation, le
               consommateur qui commence à utiliser le service pendant le délai de
               rétractation renonce tacitement à son droit de rétractation. Aucune
-              case à cocher supplémentaire n'est requise pour cette renonciation.
+              case à cocher supplémentaire n&apos;est requise pour cette renonciation.
             </p>
           </div>
 
@@ -116,7 +116,7 @@ export default function CgvPage() {
               Vous pouvez résilier votre abonnement à tout moment depuis vos
               paramètres de compte. La résiliation prendra effet à la fin de la
               période de facturation en cours. Aucun remboursement au prorata
-              n'est effectué.
+              n&apos;est effectué.
             </p>
           </div>
 
@@ -125,9 +125,9 @@ export default function CgvPage() {
               Article 8 — Remboursements
             </h2>
             <p className="text-[#F5F5FA]/80">
-              Aucun remboursement au prorata n'est effectué en cas de résiliation
+              Aucun remboursement au prorata n&apos;est effectué en cas de résiliation
               anticipée, sauf obligation légale. En cas de litige, vous pouvez
-              contacter notre service client à l'adresse indiquée ci-dessous.
+              contacter notre service client à l&apos;adresse indiquée ci-dessous.
             </p>
           </div>
 
@@ -138,7 +138,7 @@ export default function CgvPage() {
             <p className="text-[#F5F5FA]/80">
               En cas de litige, vous pouvez recourir à une médiation de la
               consommation auprès de la FEVAD (Fédération du e-commerce et de la
-              vente à distance). Tout litige non résolu à l'amiable relève de la
+              vente à distance). Tout litige non résolu à l&apos;amiable relève de la
               compétence exclusive des tribunaux de Besançon, France.
             </p>
           </div>
@@ -147,7 +147,7 @@ export default function CgvPage() {
             <h2 className="text-xl font-semibold text-[#F5F5FA]">Contact</h2>
             <p className="text-[#F5F5FA]/80">
               Pour toute question concernant ces CGV, vous pouvez nous contacter
-              à l'adresse :{' '}
+              à l&apos;adresse :{' '}
               <a
                 href="mailto:matiss.frasne@gmail.com"
                 className="text-[#7C3AED] hover:underline"

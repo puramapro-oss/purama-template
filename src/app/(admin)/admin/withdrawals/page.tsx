@@ -52,7 +52,7 @@ export default async function AdminWithdrawalsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/[0.06]">
-                {withdrawals.map((withdrawal: any) => (
+                {withdrawals.map((withdrawal) => (
                   <tr key={withdrawal.id}>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-mono text-[#F5F5FA]/60">
                       {withdrawal.user_id?.substring(0, 8)}...

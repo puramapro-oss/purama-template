@@ -123,7 +123,7 @@ export default function SignupPage() {
               className="w-full bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] rounded-xl py-3 text-sm font-semibold disabled:opacity-60 flex items-center justify-center gap-2 transition hover:opacity-90"
             >
               {loading && <Loader2 className="w-4 h-4 animate-spin" />}
-              S'inscrire
+              S&apos;inscrire
             </button>
           </form>
           <div className="relative">

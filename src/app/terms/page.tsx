@@ -2,7 +2,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Conditions Générales d\'Utilisation',
+  title: 'Conditions Générales d&apos;Utilisation',
 }
 
 export default function TermsPage() {
@@ -13,7 +13,7 @@ export default function TermsPage() {
           <Link href="/" className="text-sm text-[rgba(245,245,250,0.4)] hover:text-[var(--foreground)] transition">
             ← Retour
           </Link>
-          <h1 className="text-3xl font-bold text-[var(--foreground)] mt-4">Conditions Générales d'Utilisation</h1>
+          <h1 className="text-3xl font-bold text-[var(--foreground)] mt-4">Conditions Générales d&apos;Utilisation</h1>
           <p className="text-sm text-[rgba(245,245,250,0.4)] mt-2">Dernière mise à jour : janvier 2025</p>
         </div>
 
@@ -53,17 +53,17 @@ export default function TermsPage() {
           <section className="space-y-3">
             <h2 className="text-lg font-semibold text-[var(--foreground)]">5. Essai gratuit</h2>
             <p>
-              Un essai gratuit de 7 jours est proposé. Aucun paiement n'est requis pendant cette période.
-              L'essai se transforme automatiquement en abonnement payant sauf résiliation avant la fin de la période d'essai.
+              Un essai gratuit de 7 jours est proposé. Aucun paiement n&apos;est requis pendant cette période.
+              L&apos;essai se transforme automatiquement en abonnement payant sauf résiliation avant la fin de la période d&apos;essai.
             </p>
           </section>
 
           <section className="space-y-3">
             <h2 className="text-lg font-semibold text-[var(--foreground)]">6. Abonnement et paiement</h2>
             <p>
-              L'accès au Service est soumis à un abonnement mensuel ou annuel. Les paiements sont traités par Stripe.
+              L&apos;accès au Service est soumis à un abonnement mensuel ou annuel. Les paiements sont traités par Stripe.
               Le renouvellement est automatique sauf résiliation. Les tarifs sont indiqués TTC et peuvent être modifiés
-              avec un préavis d'un mois.
+              avec un préavis d&apos;un mois.
             </p>
           </section>
 
@@ -71,16 +71,16 @@ export default function TermsPage() {
             <h2 className="text-lg font-semibold text-[var(--foreground)]">7. Résiliation</h2>
             <p>
               Vous pouvez résilier votre abonnement à tout moment depuis votre espace client. La résiliation prend effet
-              à la fin de la période déjà payée. Aucun remboursement n'est effectué pour la période en cours.
+              à la fin de la période déjà payée. Aucun remboursement n&apos;est effectué pour la période en cours.
             </p>
           </section>
 
           <section className="space-y-3">
             <h2 className="text-lg font-semibold text-[var(--foreground)]">8. Droit de rétractation</h2>
             <p>
-              Conformément à l'article L221-28 3° du Code de la consommation, le droit de rétractation de 14 jours
-              ne s'applique pas aux services pleinement exécutés avant la fin du délai avec accord exprès du consommateur.
-              En utilisant le Service pendant l'essai gratuit, vous renoncez à votre droit de rétractation.
+              Conformément à l&apos;article L221-28 3° du Code de la consommation, le droit de rétractation de 14 jours
+              ne s&apos;applique pas aux services pleinement exécutés avant la fin du délai avec accord exprès du consommateur.
+              En utilisant le Service pendant l&apos;essai gratuit, vous renoncez à votre droit de rétractation.
             </p>
           </section>
 
@@ -95,9 +95,9 @@ export default function TermsPage() {
           <section className="space-y-3">
             <h2 className="text-lg font-semibold text-[var(--foreground)]">10. Responsabilité</h2>
             <p>
-              Le Service est fourni "en l'état". SASU PURAMA ne garantit pas que le Service sera exempt d'erreurs
-              ou de bugs. SASU PURAMA ne peut être tenu responsable des dommages indirects résultant de l'utilisation
-              ou de l'impossibilité d'utiliser le Service.
+              Le Service est fourni &quot;en l&apos;état&quot;. SASU PURAMA ne garantit pas que le Service sera exempt d&apos;erreurs
+              ou de bugs. SASU PURAMA ne peut être tenu responsable des dommages indirects résultant de l&apos;utilisation
+              ou de l&apos;impossibilité d&apos;utiliser le Service.
             </p>
           </section>
 
