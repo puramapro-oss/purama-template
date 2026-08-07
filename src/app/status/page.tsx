@@ -52,10 +52,10 @@ export default function StatusPage() {
   }
 
   useEffect(() => {
-    checkStatus()
+    queueMicrotask(() => checkStatus())
 
     const interval = setInterval(() => {
-      checkStatus()
+      queueMicrotask(() => checkStatus())
     }, 30000)
 
     return () => clearInterval(interval)

@@ -28,18 +28,20 @@ export function useWallet(): WalletState {
   const [tick, setTick] = useState(0)
 
   useEffect(() => {
-    setLoading(true)
-    fetch('/api/wallet/balance')
-      .then(r => r.json())
-      .then(data => {
-        if (data.error) { setError(data.error); return }
-        setBalanceCents(data.balance_cents)
-        setBalanceEur(data.balance_eur)
-        setEntries(data.entries)
-        setError(null)
-      })
-      .catch(() => setError('Impossible de charger le solde'))
-      .finally(() => setLoading(false))
+    queueMicrotask(() => {
+      setLoading(true)
+      fetch('/api/wallet/balance')
+        .then(r => r.json())
+        .then(data => {
+          if (data.error) { setError(data.error); return }
+          setBalanceCents(data.balance_cents)
+          setBalanceEur(data.balance_eur)
+          setEntries(data.entries)
+          setError(null)
+        })
+        .catch(() => setError('Impossible de charger le solde'))
+        .finally(() => setLoading(false))
+    })
   }, [tick])
 
   return { balance_cents, balance_eur, entries, loading, error, refetch: () => setTick(t => t + 1) }

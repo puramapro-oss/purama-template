@@ -7,7 +7,7 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T)
   useEffect(() => {
     try {
       const item = window.localStorage.getItem(key)
-      if (item) setStoredValue(JSON.parse(item))
+      if (item) queueMicrotask(() => setStoredValue(JSON.parse(item)))
     } catch { /* ignore */ }
   }, [key])
 

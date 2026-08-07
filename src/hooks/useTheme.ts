@@ -7,8 +7,10 @@ export function useTheme() {
   useEffect(() => {
     const saved = localStorage.getItem('theme') as 'dark' | 'light' | null
     const resolved = saved ?? 'dark'
-    setTheme(resolved)
-    document.documentElement.classList.toggle('dark', resolved === 'dark')
+    queueMicrotask(() => {
+      setTheme(resolved)
+      document.documentElement.classList.toggle('dark', resolved === 'dark')
+    })
   }, [])
 
   function toggleTheme() {
