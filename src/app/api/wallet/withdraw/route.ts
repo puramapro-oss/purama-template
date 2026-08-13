@@ -3,10 +3,12 @@ import { z } from 'zod'
 import { createClient } from '@/lib/supabase-server'
 import { createServiceClient } from '@/lib/supabase-server'
 import { WALLET_MIN_WITHDRAWAL } from '@/lib/constants'
+import { isValidIban } from '@/lib/iban'
 
 const schema = z.object({
   amount_cents: z.number().int().positive(),
-  iban: z.string().min(15).max(34),
+  iban: z.string().min(15).max(34)
+    .refine(isValidIban, 'IBAN invalide (clé de contrôle incorrecte).'),
   bic: z.string().min(8).max(11),
 })
 
@@ -17,7 +19,10 @@ export async function POST(req: NextRequest) {
     if (!user) return NextResponse.json({ error: 'Non autorisé' }, { status: 401 })
 
     const body = await req.json()
-    const { amount_cents, iban, bic } = schema.parse(body)
+    const clean = body && typeof body === 'object' && typeof body.iban === 'string'
+      ? { ...body, iban: body.iban.replace(/\s+/g, '').toUpperCase() }
+      : body
+    const { amount_cents, iban, bic } = schema.parse(clean)
 
     if (amount_cents < WALLET_MIN_WITHDRAWAL * 100) {
       return NextResponse.json({ error: `Montant minimum: ${WALLET_MIN_WITHDRAWAL}€` }, { status: 400 })
