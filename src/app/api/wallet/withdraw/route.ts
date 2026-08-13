@@ -38,23 +38,38 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Solde insuffisant' }, { status: 400 })
     }
 
-    const { error: withdrawalError } = await serviceSupabase.from('withdrawals').insert({
-      user_id: user.id,
-      amount_cents,
-      iban,
-      bic,
-      status: 'pending',
-      requested_at: new Date().toISOString(),
-    })
+    const { data: withdrawal, error: withdrawalError } = await serviceSupabase
+      .from('withdrawals')
+      .insert({
+        user_id: user.id,
+        amount_cents,
+        iban,
+        bic,
+        status: 'pending',
+        requested_at: new Date().toISOString(),
+      })
+      .select('id')
+      .single()
 
-    if (withdrawalError) {
+    if (withdrawalError || !withdrawal) {
       return NextResponse.json({ error: 'Erreur lors de la demande de retrait' }, { status: 500 })
     }
 
-    await serviceSupabase
+    // Verrou optimiste anti-course (2 retraits quasi-simultanés, cf task_plan.md P3) :
+    // n'écrit QUE si wallet_balance_cents n'a pas bougé depuis la lecture. Sinon la
+    // demande de retrait déjà créée ci-dessus est annulée (pas de retrait fantôme).
+    const { data: debited } = await serviceSupabase
       .from('profiles')
       .update({ wallet_balance_cents: profile.wallet_balance_cents - amount_cents })
       .eq('id', user.id)
+      .eq('wallet_balance_cents', profile.wallet_balance_cents)
+      .select('id')
+      .maybeSingle()
+
+    if (!debited) {
+      await serviceSupabase.from('withdrawals').delete().eq('id', withdrawal.id)
+      return NextResponse.json({ error: 'Le solde a changé entre-temps. Réessaie.' }, { status: 409 })
+    }
 
     return NextResponse.json({ success: true, message: 'Demande de retrait enregistrée' })
   } catch (e) {
