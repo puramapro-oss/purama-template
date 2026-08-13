@@ -34,6 +34,9 @@ export async function POST(req: NextRequest) {
     }
 
     const selectedPlan = PLANS[plan]
+    if (!selectedPlan.priceId) {
+      return NextResponse.json({ error: 'Ce plan n\'est pas encore configuré pour le paiement. Réessaie plus tard ou contacte le support.' }, { status: 503 })
+    }
     const origin = req.headers.get('origin') ?? 'https://{{SLUG}}.purama.dev'
 
     const session = await stripe.checkout.sessions.create({
