@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
         email: user.email!,
         name: profile?.full_name ?? undefined,
         metadata: { user_id: user.id, slug: '{{SLUG}}' },
-      })
+      }, { idempotencyKey: `customer:${user.id}` })
       customerId = customer.id
       await serviceSupabase.from('profiles').update({ stripe_customer_id: customerId }).eq('id', user.id)
     }
@@ -39,6 +39,10 @@ export async function POST(req: NextRequest) {
     }
     const origin = req.headers.get('origin') ?? 'https://{{SLUG}}.purama.dev'
 
+    // Fenêtre de 10 min : absorbe les vrais retries réseau/double-clic sans
+    // bloquer un nouvel essai légitime plus tard (cf task_plan.md P3 —
+    // idempotencyKey sortants Stripe).
+    const idemBucket = Math.floor(Date.now() / 600_000)
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
       mode: 'subscription',
@@ -51,7 +55,7 @@ export async function POST(req: NextRequest) {
       success_url: `${origin}/dashboard?checkout=success`,
       cancel_url: `${origin}/settings/abonnement?checkout=cancel`,
       metadata: { user_id: user.id, slug: '{{SLUG}}', app_slug: '{{SLUG}}' },
-    })
+    }, { idempotencyKey: `checkout:${user.id}:${plan}:${idemBucket}` })
 
     return NextResponse.json({ url: session.url })
   } catch (e) {
