@@ -26,6 +26,7 @@ export type Database = {
           referral_code: string | null
           referred_by: string | null
           deletion_requested: boolean
+          deletion_requested_at: string | null
           wallet_balance_cents: number
           wallet_pending_cents: number
           created_at: string
@@ -44,6 +45,7 @@ export type Database = {
           referral_code?: string | null
           referred_by?: string | null
           deletion_requested?: boolean
+          deletion_requested_at?: string | null
           wallet_balance_cents?: number
           wallet_pending_cents?: number
           created_at?: string
@@ -62,6 +64,7 @@ export type Database = {
           referral_code?: string | null
           referred_by?: string | null
           deletion_requested?: boolean
+          deletion_requested_at?: string | null
           wallet_balance_cents?: number
           wallet_pending_cents?: number
           created_at?: string

@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import Image from 'next/image'
 import { User } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -37,9 +38,13 @@ export function Avatar({ src, alt, fallback, size = 'md', className, ...props }:
       {...props}
     >
       {src && !error ? (
-        <img
+        <Image
           src={src}
           alt={alt ?? 'Avatar'}
+          width={64}
+          height={64}
+          unoptimized
+          loading="eager"
           onError={() => setError(true)}
           className="h-full w-full object-cover"
         />

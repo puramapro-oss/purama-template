@@ -8,15 +8,37 @@ export function useAuth() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const supabase = createClient()
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      setUser(user)
-      setLoading(false)
-    })
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null)
-    })
-    return () => subscription.unsubscribe()
+    let active = true
+    let authEvents = 0
+    let unsubscribe: (() => void) | undefined
+
+    async function initialize() {
+      try {
+        const supabase = createClient()
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+          if (!active) return
+          authEvents += 1
+          setUser(session?.user ?? null)
+          setLoading(false)
+        })
+        unsubscribe = () => subscription.unsubscribe()
+
+        const { data, error } = await supabase.auth.getUser()
+        if (!active || authEvents > 0) return
+        setUser(error ? null : data.user)
+        setLoading(false)
+      } catch {
+        if (!active || authEvents > 0) return
+        setUser(null)
+        setLoading(false)
+      }
+    }
+
+    void initialize()
+    return () => {
+      active = false
+      unsubscribe?.()
+    }
   }, [])
 
   return { user, loading }

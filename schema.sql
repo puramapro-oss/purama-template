@@ -22,6 +22,8 @@ CREATE TABLE IF NOT EXISTS profiles (
   full_name TEXT,
   avatar_url TEXT,
   super_admin BOOLEAN DEFAULT FALSE,
+  deletion_requested BOOLEAN NOT NULL DEFAULT FALSE,
+  deletion_requested_at TIMESTAMPTZ,
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -56,6 +58,41 @@ CREATE TRIGGER profiles_updated_at
   BEFORE UPDATE ON profiles
   FOR EACH ROW
   EXECUTE FUNCTION update_updated_at();
+
+-- BEGIN PROFILE DELETION REQUEST TIMESTAMP
+CREATE OR REPLACE FUNCTION {{SLUG}}.stamp_profile_deletion_request()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+SECURITY INVOKER
+SET search_path = pg_catalog
+AS $$
+BEGIN
+  IF NEW.deletion_requested IS NOT TRUE THEN
+    NEW.deletion_requested_at := NULL;
+  ELSIF TG_OP = 'INSERT' THEN
+    NEW.deletion_requested_at := statement_timestamp();
+  ELSIF OLD.deletion_requested IS NOT TRUE THEN
+    NEW.deletion_requested_at := statement_timestamp();
+  ELSE
+    -- Preserve the original request, including undated legacy flags.
+    -- A supplied client timestamp cannot shorten or restart the delay.
+    NEW.deletion_requested_at := OLD.deletion_requested_at;
+  END IF;
+  RETURN NEW;
+END;
+$$;
+
+DROP TRIGGER IF EXISTS profiles_deletion_request_timestamp ON {{SLUG}}.profiles;
+CREATE TRIGGER profiles_deletion_request_timestamp
+  BEFORE INSERT OR UPDATE OF deletion_requested, deletion_requested_at
+  ON {{SLUG}}.profiles
+  FOR EACH ROW
+  EXECUTE FUNCTION {{SLUG}}.stamp_profile_deletion_request();
+
+CREATE INDEX IF NOT EXISTS profiles_deletion_request_due_idx
+  ON {{SLUG}}.profiles (deletion_requested_at)
+  WHERE deletion_requested IS TRUE AND deletion_requested_at IS NOT NULL;
+-- END PROFILE DELETION REQUEST TIMESTAMP
 
 -- Auto-create profile on signup
 CREATE OR REPLACE FUNCTION handle_new_user()

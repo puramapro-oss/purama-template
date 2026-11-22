@@ -63,3 +63,7 @@
 **Context monitoring**: >50% → `/compact` | >60% → commit+deploy+handoff
 **Avant coder**: lire `ERRORS.md` + `PATTERNS.md`
 **Bug fixé**: ligne immédiate dans `ERRORS.md`
+
+## Reprise vérifiée du 22 novembre 2026
+
+La conception des périmètres existants est déjà validée. Les cases ci-dessus restent le plan d’instanciation du modèle et ne constituent pas une nouvelle demande de permission. Le lot `AUDIT_AUTH_ACCOUNTS_20261122.md` qualifie les corrections locales d’authentification, de contrôle HTTP administrateur et de protection des demandes de suppression. Les intégrations de données, de rôles et de fournisseurs réels restent PARTIELLES ; ne pas cocher P0 à P8 globalement à partir de ce lot.

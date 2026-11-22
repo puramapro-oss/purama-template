@@ -1,7 +1,9 @@
 import { createServiceClient } from '@/lib/supabase-server'
+import { requireAdminAccess } from '@/lib/admin-server'
 import { formatPrice, formatDate } from '@/lib/utils'
 
 export default async function AdminWithdrawalsPage() {
+  await requireAdminAccess()
   const supabase = createServiceClient()
 
   const { data: withdrawals, error } = await supabase

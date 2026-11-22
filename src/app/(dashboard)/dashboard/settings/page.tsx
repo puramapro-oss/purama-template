@@ -14,7 +14,7 @@ export default function SettingsPage() {
       await supabase.auth.signOut()
       localStorage.clear()
       window.location.href = '/login'
-    } catch (err) {
+    } catch {
       toast.error('Erreur lors de la déconnexion')
     }
   }

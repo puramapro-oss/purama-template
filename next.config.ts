@@ -4,7 +4,6 @@ const nextConfig: NextConfig = {
   transpilePackages: ['@purama/smarana'],
   experimental: {
     externalDir: true,
-    serverComponentsExternalPackages: [],
   },
   images: {
     remotePatterns: [

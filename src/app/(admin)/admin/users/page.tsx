@@ -1,10 +1,9 @@
 import { createServiceClient } from '@/lib/supabase-server'
+import { requireAdminAccess } from '@/lib/admin-server'
 import { formatDate } from '@/lib/utils'
-import type { Database } from '@/types/database'
-
-type Profile = Database['public']['Tables']['profiles']['Row']
 
 export default async function AdminUsersPage() {
+  await requireAdminAccess()
   const supabase = createServiceClient()
 
   const { data: profiles, error } = await supabase
@@ -53,7 +52,7 @@ export default async function AdminUsersPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-white/[0.06]">
-              {profiles?.map((profile: Profile) => (
+              {profiles?.map(profile => (
                 <tr key={profile.id}>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-[#F5F5FA]">
                     {profile.email}
