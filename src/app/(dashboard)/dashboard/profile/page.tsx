@@ -20,7 +20,7 @@ export default function ProfilePage() {
         setEmail(user.email ?? '')
         const { data: profile } = await supabase.from('profiles').select('full_name').eq('id', user.id).single()
         if (profile?.full_name) setFullName(profile.full_name)
-      } catch (err) {
+      } catch {
         toast.error('Erreur lors du chargement du profil')
       } finally {
         setLoading(false)
@@ -42,7 +42,7 @@ export default function ProfilePage() {
       if (dbErr) throw dbErr
       await supabase.auth.updateUser({ data: { full_name: fullName } })
       toast.success('Profil mis à jour')
-    } catch (err) {
+    } catch {
       toast.error('Erreur lors de la sauvegarde')
     } finally {
       setSaving(false)

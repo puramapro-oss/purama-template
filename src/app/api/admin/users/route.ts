@@ -1,15 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase-server'
 import { createServiceClient } from '@/lib/supabase-server'
-import { SUPER_ADMIN_EMAIL } from '@/lib/constants'
+import { getAdminAccess, adminJson } from '@/lib/admin-server'
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
-    const supabase = await createClient()
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user || user.email !== SUPER_ADMIN_EMAIL) {
-      return NextResponse.json({ error: 'Accès interdit' }, { status: 403 })
-    }
+    if (await getAdminAccess() !== 'allowed') return adminJson({ error: 'Accès interdit' }, 403)
 
     const serviceSupabase = createServiceClient()
     const { data: profiles, error } = await serviceSupabase
@@ -19,11 +13,11 @@ export async function GET(req: NextRequest) {
       .limit(100)
 
     if (error) {
-      return NextResponse.json({ error: 'Erreur lors de la récupération des utilisateurs' }, { status: 500 })
+      return adminJson({ error: 'Erreur lors de la récupération des utilisateurs' }, 500)
     }
 
-    return NextResponse.json({ users: profiles })
+    return adminJson({ users: profiles })
   } catch {
-    return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 })
+    return adminJson({ error: 'Erreur serveur' }, 500)
   }
 }

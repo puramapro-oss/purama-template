@@ -9,32 +9,35 @@ export async function GET(req: NextRequest) {
   try {
     const supabase = createServiceClient()
 
-    const thirtyDaysAgo = new Date()
-    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30)
+    const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString()
 
-    const { data: accountsToDelete } = await supabase
+    const { count, error } = await supabase
       .from('profiles')
-      .select('id, email')
+      .select('id', { count: 'exact', head: true })
       .eq('deletion_requested', true)
+      .lte('deletion_requested_at', thirtyDaysAgo)
 
-    if (!accountsToDelete || accountsToDelete.length === 0) {
-      return NextResponse.json({ message: 'Aucun compte à supprimer', deleted: 0 })
+    if (error) {
+      return NextResponse.json({ error: 'Impossible de vérifier les demandes de suppression' }, { status: 500 })
     }
 
-    const deletedIds: string[] = []
-
-    for (const account of accountsToDelete) {
-      const { error } = await supabase.auth.admin.deleteUser(account.id)
-      if (!error) {
-        deletedIds.push(account.id)
-      }
+    if (typeof count !== 'number' || !Number.isSafeInteger(count) || count < 0) {
+      return NextResponse.json({ error: 'Comptage des demandes de suppression indisponible' }, { status: 503 })
     }
 
+    if (count === 0) {
+      return NextResponse.json({ message: 'Aucune demande de suppression arrivée à échéance', deleted: 0 })
+    }
+
+    // auth.users is shared across PURAMA apps. A local profile flag does not
+    // authorize deleting that global identity or its data in other apps.
+    // Keep requests intact until the coordinated deletion service is qualified.
     return NextResponse.json({
-      message: `${deletedIds.length} comptes supprimés`,
-      deleted: deletedIds.length,
-      timestamp: new Date().toISOString(),
-    })
+      error: 'La suppression du compte unifié nécessite le service central de suppression',
+      code: 'GLOBAL_ACCOUNT_DELETION_UNAVAILABLE',
+      pending: count,
+      deleted: 0,
+    }, { status: 503 })
   } catch {
     return NextResponse.json({ error: 'Erreur lors de la suppression des comptes' }, { status: 500 })
   }

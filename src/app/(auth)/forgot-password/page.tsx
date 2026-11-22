@@ -3,28 +3,37 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, Loader2 } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
+import { useAuthSubmission } from '@/hooks/useAuthSubmission'
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('')
-  const [loading, setLoading] = useState(false)
+  const { loading, begin, isActive, finish } = useAuthSubmission()
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
+  const [confirmationEmail, setConfirmationEmail] = useState('')
 
   async function handleReset(e: React.FormEvent) {
     e.preventDefault()
-    setLoading(true)
+    if (!begin()) return
     setError('')
-    const supabase = createClient()
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/reset-password`,
-    })
-    if (error) {
-      setError('Erreur lors de l\'envoi du lien. Vérifiez l\'email et réessayez.')
-      setLoading(false)
-      return
+    const submittedEmail = email.trim()
+    try {
+      const supabase = createClient()
+      const { error } = await supabase.auth.resetPasswordForEmail(submittedEmail, {
+        redirectTo: `${window.location.origin}/auth/callback?next=%2Freset-password`,
+      })
+      if (!isActive()) return
+      if (error) {
+        setError('Erreur lors de l\'envoi du lien. Vérifiez l\'email et réessayez.')
+        return
+      }
+      setConfirmationEmail(submittedEmail)
+      setSuccess(true)
+    } catch {
+      if (isActive()) setError('L\'envoi du lien est momentanément indisponible. Réessayez.')
+    } finally {
+      finish()
     }
-    setSuccess(true)
-    setLoading(false)
   }
 
   if (success) {
@@ -40,7 +49,7 @@ export default function ForgotPasswordPage() {
             <div className="space-y-2">
               <h1 className="text-2xl font-bold">Email envoyé</h1>
               <p className="text-white/60 text-sm">
-                Un lien de réinitialisation a été envoyé à <strong>{email}</strong>. Vérifiez votre boîte de réception.
+                Un lien de réinitialisation a été envoyé à <strong>{confirmationEmail}</strong>. Vérifiez votre boîte de réception.
               </p>
             </div>
             <Link href="/login" className="inline-block text-sm text-[#7C3AED] hover:underline">
@@ -65,12 +74,13 @@ export default function ForgotPasswordPage() {
             <p className="text-white/60 text-sm">Entrez votre email pour réinitialiser votre mot de passe</p>
           </div>
           {error && (
-            <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-3 text-sm text-red-400">{error}</div>
+            <div role="alert" className="bg-red-500/10 border border-red-500/20 rounded-xl p-3 text-sm text-red-400">{error}</div>
           )}
           <form onSubmit={handleReset} className="space-y-4">
             <div className="space-y-1">
-              <label className="text-sm font-medium">Email</label>
+              <label htmlFor="forgot-email" className="text-sm font-medium">Email</label>
               <input
+                id="forgot-email"
                 type="email"
                 required
                 value={email}

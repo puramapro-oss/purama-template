@@ -38,7 +38,7 @@ export default function StatusPage() {
           payments: false,
         })
       }
-    } catch (error) {
+    } catch {
       setStatus({
         api: false,
         db: false,

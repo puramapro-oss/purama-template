@@ -4,40 +4,49 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, Loader2 } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
+import { useAuthSubmission } from '@/hooks/useAuthSubmission'
 
 export default function ResetPasswordPage() {
   const router = useRouter()
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [loading, setLoading] = useState(false)
+  const { loading, begin, isActive, finish } = useAuthSubmission()
   const [error, setError] = useState('')
 
   async function handleReset(e: React.FormEvent) {
     e.preventDefault()
-    setLoading(true)
+    if (!begin()) return
     setError('')
 
     if (password !== confirmPassword) {
       setError('Les mots de passe ne correspondent pas.')
-      setLoading(false)
+      finish()
       return
     }
 
     if (password.length < 8) {
       setError('Le mot de passe doit contenir au moins 8 caractères.')
-      setLoading(false)
+      finish()
       return
     }
 
-    const supabase = createClient()
-    const { error } = await supabase.auth.updateUser({ password })
-    if (error) {
-      setError('Erreur lors de la réinitialisation. Vérifiez le lien et réessayez.')
-      setLoading(false)
-      return
+    let navigating = false
+    try {
+      const supabase = createClient()
+      const { error } = await supabase.auth.updateUser({ password })
+      if (!isActive()) return
+      if (error) {
+        setError('Erreur lors de la réinitialisation. Vérifiez le lien et réessayez.')
+        return
+      }
+      router.push('/dashboard')
+      router.refresh()
+      navigating = true
+    } catch {
+      if (isActive()) setError('La réinitialisation est momentanément indisponible. Réessayez.')
+    } finally {
+      if (!navigating) finish()
     }
-    router.push('/dashboard')
-    router.refresh()
   }
 
   return (
@@ -53,12 +62,13 @@ export default function ResetPasswordPage() {
             <p className="text-white/60 text-sm">Créez un nouveau mot de passe pour votre compte</p>
           </div>
           {error && (
-            <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-3 text-sm text-red-400">{error}</div>
+            <div role="alert" className="bg-red-500/10 border border-red-500/20 rounded-xl p-3 text-sm text-red-400">{error}</div>
           )}
           <form onSubmit={handleReset} className="space-y-4">
             <div className="space-y-1">
-              <label className="text-sm font-medium">Nouveau mot de passe</label>
+              <label htmlFor="reset-password" className="text-sm font-medium">Nouveau mot de passe</label>
               <input
+                id="reset-password"
                 type="password"
                 required
                 minLength={8}
@@ -70,8 +80,9 @@ export default function ResetPasswordPage() {
               <p className="text-xs text-white/40">Au moins 8 caractères</p>
             </div>
             <div className="space-y-1">
-              <label className="text-sm font-medium">Confirmer le mot de passe</label>
+              <label htmlFor="reset-confirm" className="text-sm font-medium">Confirmer le mot de passe</label>
               <input
+                id="reset-confirm"
                 type="password"
                 required
                 minLength={8}

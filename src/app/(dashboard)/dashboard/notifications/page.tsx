@@ -29,7 +29,7 @@ export default function NotificationsPage() {
           .order('created_at', { ascending: false })
         if (error) throw error
         setNotifications(data ?? [])
-      } catch (err) {
+      } catch {
         toast.error('Erreur lors du chargement des notifications')
       } finally {
         setLoading(false)
@@ -44,7 +44,7 @@ export default function NotificationsPage() {
       if (error) throw error
       setNotifications(prev => prev.map(n => (n.id === id ? { ...n, read: true } : n)))
       toast.success('Notification marquée comme lue')
-    } catch (err) {
+    } catch {
       toast.error('Erreur lors de la mise à jour')
     }
   }
@@ -57,7 +57,7 @@ export default function NotificationsPage() {
       if (error) throw error
       setNotifications(prev => prev.map(n => ({ ...n, read: true })))
       toast.success('Toutes les notifications ont été marquées comme lues')
-    } catch (err) {
+    } catch {
       toast.error('Erreur lors de la mise à jour')
     }
   }
